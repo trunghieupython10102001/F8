@@ -1,0 +1,255 @@
+body {
+	background-color: var(--white-color);
+}
+
+header {
+	background-color: var(--white-color);
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.logo-wrapper {
+	justify-content: center;
+	align-items: center;
+	height: 96px;
+	padding-bottom: 4px;
+}
+
+.header__logo {
+	height: 40px;
+}
+
+.authen-form-container {
+	margin-top: 64px;
+}
+
+.authen-form {
+	width: 360px;
+	padding: 24px;
+	margin: 0 auto;
+	text-align: center;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+	background-color: var(--white-color);
+	border-radius: 4px;
+}
+
+.authen-form__title {
+	font-size: 2.2rem;
+	font-weight: 300;
+	margin: 8px 0 34px;
+}
+
+.authen-form__description {
+	font-size: 1.4rem;
+	color: #636d77;
+	line-height: 1.6;
+	margin: -12px 0 24px;
+}
+
+.authen-form__social-wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.authen-form__social {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+	padding: 10px;
+	font-size: 1.4rem;
+	font-weight: 500;
+	text-decoration: none;
+	color: var(--black-color);
+	border: 1px solid #b3b3b3;
+	border-radius: 8px;
+	margin-bottom: 16px;
+	transition: background-color .3s ease;
+}
+
+.authen-form__social:hover {
+	background-color: #ebebeb;
+	border-color: #1dbfaf;
+}
+
+.social-logo {
+	width: 18px;
+	margin-right: 8px;
+}
+
+.authen-form__trick {
+	color: #636d77;
+	font-size: 1.4rem;
+	font-weight: 300;
+	line-height: 1.6;
+	margin: 4px 0 14px;
+}
+
+.authen-form__separator {
+	position: relative;
+	width: 100%;
+	height: 1px;
+	background-color: #e1e6eb;
+	display: flex;
+	margin: 24px 2px;
+}
+
+.separator__text {
+	position: absolute;
+	background-color: var(--white-color);
+	padding: 0 10px;
+	color: #636d77;
+	font-size: 1.3rem;
+	font-weight: 300;
+	margin: auto;
+	display: inline-block;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.separator__text-link {
+	display: block;
+	width: max-content;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.separator__text-link:hover {
+	text-decoration: underline;
+}
+
+.authen-form__form {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.form-wrapper {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.authen-form__form-label {
+	align-self: flex-start;
+	font-size: 1.4rem;
+	margin-bottom: 6px;
+	color: var(--text-color);
+	line-height: 18px;
+	font-weight: 600;
+}
+
+.authen-form__form-input {
+	height: 40px;
+	padding: 8px 12px;
+	border: 1px solid #b3b3b3;
+    border-radius: 3px;
+	outline: none;
+	margin-bottom: 16px;
+}
+
+.authen-form__form-input::placeholder {
+	font-size: 1.3rem;
+	color: #b5b5b5;
+}
+
+.authen-form__form-input:hover,
+.authen-form__form-input:focus {
+	border-color: #1dbfaf;
+}
+
+.password-icon {
+	position: absolute;
+	bottom: 28px;
+	right: 10px;
+	font-size: 1.3rem;
+	color: #1dbfaf;
+	cursor: pointer;
+}
+
+.form-submit-btn {
+	border: none;
+	background-color: #1dbfaf;
+	padding: 12px 16px;
+	margin-top: 12px;
+	color: var(--white-color);
+	border-radius: 8px;
+	font-weight: 600;
+	font-size: 1.4rem;
+	cursor: pointer;
+	transition: background-color .2s ease;
+}
+
+.form-submit-btn:hover {
+	background-color: #05af9e;
+}
+
+.authen-form__forgot-password--link {
+	color: #636d77;
+	font-size: 1.4rem;
+}
+
+.authen-form__forgot-password {
+	margin-top: 24px;
+	margin-bottom: 10px;
+}
+
+.direct-authen {
+	text-align: center;
+	margin: 38px 0 58px;
+}
+
+.direct-message {
+	font-size: 1.4rem;
+	color: #636d77;
+	font-weight: 300;
+}
+
+.direct-link {
+	color: #1dbfaf;
+	font-size: 1.4rem;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.direct-link:hover {
+	text-decoration: underline;
+}
+
+.authen-form__policy {
+	font-size: 1.4rem;
+	color: #636d77;
+	line-height: 1.6;
+	margin: 24px 0 10px;
+	font-weight: 300;
+}
+
+.policy-text--link {
+	color: #636d77;
+}
+
+.authen-form__notification {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	margin-bottom: 14px;
+	position: relative;
+}
+
+.notification-label {
+	font-size: 1.4rem;
+	font-weight: 300;
+	text-align: left;
+	line-height: 1.6;
+}
+
+#notification-input {
+	border: 1px solid #1dbfaf;
+	position: relative;
+	top: 4px;
+	margin-right: 10px;
+}
+
+#notification-input:checked {
+	background-color: #1dbfaf;
+}

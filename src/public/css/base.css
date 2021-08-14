@@ -1,0 +1,69 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: inherit;
+}
+
+html {
+	font-size: 62.5%;
+	font-family: 'Roboto', sans-serif;
+	box-sizing: border-box;
+	letter-spacing: 1px;
+}
+
+body {
+	background-color: #fafafa;
+}
+
+:root {
+	--white-color: #fff;
+	--black-color: #000;
+	--text-color: #333;
+	--gray-color: #666;
+	--primary-color: #f05123;
+	--button-image: linear-gradient(70.06deg, #2cccff -5%, #22dfbf 106%);
+	--button-color: #1dbfaf;
+	--plum-color: #b80257;
+}
+
+@keyframes growth {
+	0% {
+		transform: scaleY(0);
+	}
+
+	100% {
+		transform: scaleY(1);
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeOut {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes scaleUp {
+	from {
+		transform: scale(1);
+		opacity: 1;
+	}
+
+	to {
+		transform: scale(1.2);
+		opacity: 0.8;
+	}
+}
