@@ -1,0 +1,35 @@
+<section class="course grid-full">
+	<div class="grid">
+		<div class="course__path row">
+			<span class="course__path-item btn--secondary">Theo lộ trình</span>
+			<span class="course__path-item">Mới nhất</span>
+		</div>
+		<div class="course-container row">
+			{{#each courses}}
+			<div class="course-item col-lg-4">
+				<div class="course-img-wrapper">
+					<a href="/courses/{{this.slug}}" class="course-item__img-link">
+						<div class="course-item__img" data-link="{{this.image}}">
+						</div>
+					</a>
+				</div>
+				<div class="course-item__content">
+					<h5 class="course-item__name">
+						<a href="/courses/{{this.slug}}" class="course-item__name--link">{{this.name}}</a>
+					</h5>
+					<p class="course-item__description">
+						{{this.description}}
+					</p>
+					<div class="course-item__students">
+						<i class="fas fa-users"></i>
+						<span class="course-item__students-num">
+							32.502
+						</span>
+					</div>
+				</div>
+			</div>
+			{{/each}}
+		</div>	
+	</div>
+</section>
+<script src="./script/courses.js"></script>

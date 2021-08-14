@@ -1,0 +1,40 @@
+{
+  "name": "f8",
+  "version": "1.0.0",
+  "description": "F8 ",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon --inspect src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trunghieupython10102001/F8.git"
+  },
+  "keywords": [
+    "F8",
+    "nodejs",
+    "html-css",
+    "javascript"
+  ],
+  "author": "trunghieupython",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trunghieupython10102001/F8/issues"
+  },
+  "homepage": "https://github.com/trunghieupython10102001/F8#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.3",
+    "md5": "^2.3.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.13.6",
+    "mongoose-delete": "^0.5.3",
+    "mongoose-slug-generator": "^1.0.4",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.12",
+    "randomstring": "^1.2.1"
+  }
+}

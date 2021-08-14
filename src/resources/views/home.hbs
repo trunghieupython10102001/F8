@@ -1,0 +1,108 @@
+{{!-- Slider --}}
+<div class="slider grid-full">
+	<video autoplay muted loop class="slider__video">
+		<source src="./video/slider-video.mp4" type="video/mp4">
+	</video>
+	<div class="slider__overlay">
+	</div>
+	<div class="slider__content grid">
+		<h1 class="slider__content-title">Học lập trình để đi làm!</h1>
+		<h3 class="slider__content-subtitle">Trở thành lập trình viên nhà tuyển dụng săn đón.</h3>
+		<a href="/courses" class="btn--primary">HỌC NGAY</a>
+	</div>
+	<div class="slider__play-btn">
+		<i class="fas fa-play-circle"></i>
+		<span class="play-btn__text"></span> Xem video
+		<div class="play-btn__description">F8 cùng các bạn học viên offline tới công ty nhận việc làm sau khi kết thúc khóa học.</div>
+	</div>
+</div>
+{{!-- Introduction --}}
+<section class="intro grid-full">
+	<div class="grid">
+		<div class="intro-wrapper row">
+			<div class="intro-item col-lg-4">
+				<img src="./img/intro1.png" alt="intro1" class="intro-item__img">
+				<h3 class="intro-item__content">
+					<strong class="intro-item__content--hightlight">66.354+</strong>
+					người đã tham gia
+				</h3>
+			</div>
+			<div class="intro-item col-lg-4">
+				<img src="./img/intro2.png" alt="intro1" class="intro-item__img">
+				<h3 class="intro-item__content">
+					<strong class="intro-item__content--hightlight">8+</strong>
+					khoá học dành cho bạn
+				</h3>
+			</div>
+			<div class="intro-item col-lg-4">
+				<img src="./img/intro3.png" alt="intro1" class="intro-item__img">
+				<h3 class="intro-item__content">
+					Học bất cứ lúc nào, bất cứ nơi đâu
+				</h3>
+			</div>
+		</div>
+	</div>
+</section>
+{{!-- Courses --}}
+<section class="course grid-full">
+	<div class="grid">
+		<div class="course__title">
+			<h2 class="course__main-title">Khóa học nổi bật</h2>
+			<p class="course__subtitle">
+				<strong class="num-student">66.354+ </strong>
+				người đã học và hàng nghìn trang web được tạo ra mỗi tháng
+			</p>
+		</div>
+		<div class="course-container row">
+			{{#each courses}}
+			<div class="course-item col-lg-4">
+				<div class="course-img-wrapper">
+					<a href="/courses/{{this.slug}}" class="course-item__img-link">
+						<div class="course-item__img" data-link="{{this.image}}">
+						</div>
+					</a>
+				</div>
+				<div class="course-item__content">
+					<h5 class="course-item__name">
+						<a href="/courses/{{this.slug}}" class="course-item__name--link">{{this.name}}</a>
+					</h5>
+					<p class="course-item__description">
+						{{this.description}}
+					</p>
+					<div class="course-item__students">
+						<i class="fas fa-users"></i>
+						<span class="course-item__students-num">
+							32.502
+						</span>
+					</div>
+				</div>
+			</div>
+			{{/each}}
+		</div>	
+		<div class="row">
+			<a href="/courses" class="course__btn btn--primary">XEM TẤT CẢ</a>
+		</div>
+	</div>
+</section>
+{{!-- Banner --}}
+<section class="banner grid-full row"> 
+	<h2 class="banner__title">
+		66.969+ người khác đã học. Còn bạn?
+	</h2>
+	<h6 class="banner__slogan">"Đừng học lập trình. Nghiện đấy!”</h6>
+	<a href="/courses" class="banner__btn btn--primary">THỬ MỘT LẦN</a>
+</section>
+{{!-- Founder --}}
+<section class="founder grid-full">
+	<div class="grid">
+		<div class="row founder-wrapper">
+			<img src="./img/founder_sondn.jpeg" alt="Founder Sơn Đặng" class="founder__img col-lg-6">
+			<div class="founder__content col-lg-6">
+				<blockquote class="founder__slogan">"... tôi làm việc bất kể ngày nghỉ, ngày lễ. Ở bất cứ đâu tôi có thể đặt chiếc máy tính của mình và tôi LUÔN TIN rằng tôi sẽ tạo ra được những sản phẩm tuyệt vời để CHIA SẺ với cộng đồng, đó là mục tiêu tôi luôn theo đuổi ..."</blockquote>
+				<span class="founder__author">– Founder F8 –</span>
+				<a href="/" class="founder__learn-more btn--primary">Tìm hiểu thêm</a>
+			</div>
+		</div>
+	</div>
+</section>
+<script src="./script/home.js"></script>
