@@ -77,6 +77,127 @@
 	border-bottom: 1px solid rgba(0, 0, 0, .05);
 }
 
+/* User */
+.nav__user {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+}
+
+.nav__user-info {
+	display: flex;
+	align-items: center;
+	position: relative;
+	margin-right: 10px;
+}
+
+.nav__user-info::after {
+	content: "";
+	display: block;
+	position: absolute;
+	height: 24px;
+	width: 1px;
+	background-color: var(--text-color);
+	right: 0px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.user-info__avatar {
+	width: 30px;
+	border-radius: 50%;
+}
+
+.user-info__name {
+	color: var(--white-color);
+	font-size: 1.4rem;
+	font-weight: 500;
+	margin: 0 12px;
+}
+
+.nav__user-controls {
+	display: flex;
+}
+
+.user-controls-item {
+	color: var(--white-color);
+	font-size: 1.8rem;
+	position: relative;
+	cursor: pointer;
+	padding: 10px;
+}
+
+.user-controls-item:hover .user-controls-courses__message{
+	display: block;
+}
+
+.user-controls-courses__message {
+	position: absolute;
+	width: max-content;
+	font-size: 1.4rem;
+	font-weight: 300;
+	background-color: #333;
+	padding: 8px;
+	border-radius: 6px;
+	top: calc(100% + 12px);
+	left: 50%;
+	transform: translateX(-50%);
+	display: none;
+	animation: fadeIn .2s ease;
+}
+
+.user-controls-courses__message::after {
+	content: "";
+	position: absolute;
+	width: 0; 
+	height: 0; 
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-bottom: 8px solid #333;
+	bottom: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.controls-box {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	width: max-content;
+	background-color: var(--white-color);
+	padding: 10px 0;
+	border-radius: 8px;
+	right: 0;
+	top: calc(100% + 10px);
+	box-shadow: 0 0 16px rgba(0, 0, 0, .1);
+}
+
+.user-controls-item .hidden {
+	display: none;
+}
+
+.controls-setting-text {
+	color: #777;
+	font-size: 1.4rem;
+	padding: 4px 20px;
+	display: flex;
+	align-items: center;
+	width: 200px;
+	transition: background-color .2s ease;
+}
+
+.controls-setting-text:hover {
+	background-color: rgba(0, 0, 0, .05);
+}
+
+.controls-setting-btn {
+	text-decoration: none;
+	display: inline-block;
+	color: var(--text-color);
+	font-size: 1.4rem;
+	padding: 8px 16px;
+}
+
 .nav__authen {
 	margin-left: auto;
 }
@@ -361,6 +482,7 @@
 }
 
 .course__path-item {
+	text-decoration: none;
 	margin: 0 10px;
 	color: rgba(0, 0, 0, .8);
 	font-size: 1.4rem;

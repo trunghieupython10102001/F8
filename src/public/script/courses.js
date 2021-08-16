@@ -7,7 +7,6 @@ const coursePathItems = $$('.course__path-item')
 coursesImg.forEach(courseImg => {
 	courseImg.style.backgroundImage = `url(${courseImg.getAttribute('data-link')})`
 });
-console.log(coursePathItems)
 coursePathItems[0].onclick = function() {
 	coursePathItems[0].classList.add('btn--secondary')
 	coursePathItems[1].classList.remove('btn--secondary')

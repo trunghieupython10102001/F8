@@ -4,14 +4,14 @@
 		<div class="row nav-wrapper">
 			<div class="nav__logo">
 				<a href="/">
-					<img class="nav__logo-img" src="./img/f8_text_logo.png" alt="F8">
+					<img class="nav__logo-img" src="/img/f8_text_logo.png" alt="F8">
 				</a>
 			</div>
 			<ul class="nav__menu">
 				<li class="nav__menu-item"><a class="menu-item--link" href="/">Trang chủ</a></li>
 				<li class="nav__menu-item"><a class="menu-item--link" href="/courses">Khóa học</a></li>
 				<li class="nav__menu-item">
-					<a class="menu-item--link" href="/">Cộng đồng</a>
+					<a class="menu-item--link" href="#">Cộng đồng</a>
 					<ul class="community-submenu">
 						<li class="submenu-item"><a href="https://www.youtube.com/c/F8VNOfficial" class="submenu-item--link">F8 Official Channel</a></li>
 						<li class="submenu-item"><a href="https://www.facebook.com/groups/f8official/" class="submenu-item--link">F8 Facebook Group</a></li>
@@ -20,10 +20,50 @@
 					</ul>
 				</li>
 			</ul>
+			
+			{{!-- logined --}}
+			{{#if user}}
+			<div class="nav__user">
+				<div class="nav__user-info">
+					<img src="/img/f8-avatar.jpeg" alt="{{user.name}}" class="user-info__avatar">
+					<span class="user-info__name">{{user.name}}</span>
+				</div>
+				<div class="nav__user-controls">
+					<div class="user-controls-item user-controls-courses">
+						<i class="fas fa-bookmark"></i>
+						<div class="user-controls-courses__message">Khoá học của tôi</div>
+						<div class="controls-box"></div>
+					</div>
+					<div class="user-controls-item user-controls-notify">
+						<i class="fas fa-bell"></i>
+						<div class="user-controls-courses__message">Thông báo</div>
+						<div class="controls-box"></div>
+					</div>
+					<div class="user-controls-item user-controls-settings">
+						<i class="fas fa-caret-down"></i>
+						<div class="user-controls-courses__message">Cá nhân</div>
+						<div class="controls-box hidden" id="controls-box-setting">
+							<p class="controls-setting-text">
+								<i class="fas fa-cog"></i>
+								<a href="" class="controls-setting-btn">Cài đặt</a>
+							</p>
+							<p class="controls-setting-text">
+								<i class="fas fa-sign-out-alt"></i>
+								<a href="/authen/logout" class="controls-setting-btn">Đăng xuất</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{{!-- unlogin --}}
+			{{else}}
 			<div class="nav__authen">
-				<a href="/authen/login" class="nav__authen-item sign-in">{{user.name}}</a>
+				<a href="/authen/login" class="nav__authen-item sign-in">Đăng nhập</a>
 				<a href="/authen/signup" class="nav__authen-item sign-up">Đăng ký</a>
 			</div>
+			{{/if}}
+			
 		</div>
 	</nav>
 </header>

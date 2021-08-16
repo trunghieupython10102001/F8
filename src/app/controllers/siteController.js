@@ -7,7 +7,9 @@ const { mongooseArrayToObj, mongooseToObject } = require('../../util/mongoose')
 class SiteController {
 
 	index(req, res, next) {
-		Promise.all([Course.find({}).limit(6), User.findOne({ _id: req.signedCookies.id })])
+		let signedCookies = req.signedCookies.id || null
+		console.log(signedCookies)
+		Promise.all([Course.find({}).limit(6), User.findOne({ _id: signedCookies })])
 			.then(([courses, user]) => {
 				res.render('home', {
 					courses: mongooseArrayToObj(courses),

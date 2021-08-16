@@ -145,7 +145,6 @@ header {
 	border: 1px solid #b3b3b3;
     border-radius: 3px;
 	outline: none;
-	margin-bottom: 16px;
 }
 
 .authen-form__form-input::placeholder {
@@ -157,6 +156,16 @@ header {
 .authen-form__form-input:focus {
 	border-color: #1dbfaf;
 }
+
+.form-message {
+	align-self: flex-start;
+	margin-bottom: 16px;
+	font-size: 1.2rem;
+	color: #f33a58;
+	padding-top: 4px;
+	line-height: 16px;
+}
+
 
 .password-icon {
 	position: absolute;
@@ -252,4 +261,13 @@ header {
 
 #notification-input:checked {
 	background-color: #1dbfaf;
+}
+
+.invalid {
+	border-color: #f33a58;
+	background-color: #fdebee;
+}
+
+.invalid:hover {
+	border-color: #f33a58;	
 }

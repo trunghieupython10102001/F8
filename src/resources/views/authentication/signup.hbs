@@ -7,11 +7,11 @@
 				<p class="authen-form__description">F8 là cộng đồng học lập trình thực tế miễn phí. Đăng nhập để cùng nhau học tập, đóng góp và chia sẻ kiến thức ❤️</p>
 				<div class="authen-form__social-wrapper">
 					<a href="" class="authen-form__social">
-						<img src="../img/search.png" alt="google logo" class="social-logo">
+						<img src="/img/search.png" alt="google logo" class="social-logo">
 						<span class="social-text">Đăng ký với Google</span>
 					</a>
 					<a href="" class="authen-form__social">
-						<img src="../img/facebook.png" alt="google logo" class="social-logo">
+						<img src="/img/facebook.png" alt="google logo" class="social-logo">
 						<span class="social-text">Đăng ký với Facebook</span>
 					</a>
 				</div>
@@ -19,22 +19,29 @@
 				<div class="authen-form__separator">
 					<span class="separator__text separator__text-link">hoặc đăng ký với email</span>
 				</div>
-				<form method="POST" action="/authen/signup" class="authen-form__form">
+				<form method="POST" action="/authen/signup" class="authen-form__form" id="signup-form">
 					<div class="form-wrapper form-email">
 						<label class="authen-form__form-label" for="name-input">Họ và tên</label>
 						<input name="name" id="name-input" type="text" class="authen-form__form-input" placeholder="VD: Nguyễn Văn A">
+						<span class="form-message"></span>
 					</div>
 					<div class="form-wrapper form-email">
 						<label class="authen-form__form-label" for="email-input">Email</label>
-						<input name="email" id="email-input" type="email" class="authen-form__form-input" placeholder="VD: nguyenvana@f8.edu.vn">
+						<input name="email" id="email-input" type="email" class="authen-form__form-input" placeholder="VD: nguyenvana@f8.edu.vn" autocomplete="username">
+						{{#if message}}
+						<span class="form-message">{{message}}</span>
+						{{else}}
+						<span class="form-message"></span>
+						{{/if}}
 					</div>
 					<div class="form-wrapper form-password">
-						<label id="password-input" class="authen-form__form-label" for="password-input">Mật khẩu</label>
-						<input name="password" type="password" class="authen-form__form-input" placeholder="Nhập mật khẩu">
-						<span class="password-icon">
+						<label class="authen-form__form-label" for="password-input">Mật khẩu</label>
+						{{!-- <span class="password-icon">
 							<i class="fas fa-eye-slash"></i>
-							{{!-- <i class="fas fa-eye"></i> --}}
-						</span>
+							<i class="fas fa-eye"></i>
+						</span> --}}
+						<input name="password" type="password" id="password-input" class="authen-form__form-input" placeholder="Nhập mật khẩu" autocomplete="current-password">
+						<span class="form-message"></span>
 					</div>
 					<div class="authen-form__notification">
 						<input type="checkbox" id="notification-input" name="notification">
@@ -51,6 +58,99 @@
 	</div>
 </div>
 <div class="direct-authen">
-	<span class="direct-message">Bạn chưa có tài khoản?</span>
-	<a href="/authen/signup" class="direct-link">Đăng nhập</a>
+	<span class="direct-message">Bạn đã có tài khoản?</span>
+	<a href="/authen/login" class="direct-link">Đăng nhập</a>
 </div>
+<script src="/script/validator.js"></script>
+<script>
+	const form1 = new Validator('#signup-form')
+	const nameInput = $('#name-input')
+	const nameMessage = nameInput.nextElementSibling
+	const emailInput = $('#email-input')
+	const emailMessage = emailInput.nextElementSibling
+	const passwordInput = $('#password-input')
+	const passwordMessage = passwordInput.nextElementSibling
+	const submitBtn = $('.form-submit-btn')
+	let isSubmitable = false
+
+	// Check name
+	nameInput.onblur = function() {
+		if(form1.isRequired('#name-input')) {
+			nameInput.classList.remove('invalid')
+			isSubmitable = true
+		} else {
+			nameInput.classList.add('invalid')
+			nameMessage.innerText = 'Vui lòng nhập tên của bạn'
+			isSubmitable = false
+		}
+	}
+
+	nameInput.oninput = function() {
+		nameInput.classList.remove('invalid')
+		nameMessage.innerText = ''
+	}
+
+	// Validate email
+	emailInput.onblur = function() {
+		if(form1.isRequired('#email-input')) {
+			if (form1.isEmail('#email-input')) {
+				emailInput.classList.remove('invalid')
+				isSubmitable = true
+			} else {
+				emailInput.classList.add('invalid')
+				emailMessage.innerText = 'Trường này phải là email'
+				isSubmitable = false
+			}
+		} else {
+			emailInput.classList.add('invalid')
+			emailMessage.innerText = 'Vui lòng nhập vào email'
+			isSubmitable = false
+		}
+	}
+
+	emailInput.oninput = function() {
+		emailInput.classList.remove('invalid')
+		emailMessage.innerText = ''
+	}
+
+	// check password 
+	passwordInput.onblur = function() {
+		if(form1.isRequired('#password-input')) {
+			if (form1.minLength('#password-input', 6)) {
+				passwordInput.classList.remove('invalid')
+				isSubmitable = true
+			} else {
+				passwordInput.classList.add('invalid')
+				passwordMessage.innerText = 'Mật khẩu cần tối thiểu 6 ký tự'
+				isSubmitable = false
+			}
+		} else {
+			passwordInput.classList.add('invalid')
+			passwordMessage.innerText = 'Vui lòng nhập vào password'
+			isSubmitable = false
+		}
+	}
+
+	passwordInput.oninput = function() {
+		passwordInput.classList.remove('invalid')
+		passwordMessage.innerText = ''
+	}
+
+	console.log(isSubmitable)
+
+	form1.formElement.oninput = function(e) {
+		isSubmitable = form1.isRequired('#name-input') && 
+			form1.isRequired('#email-input') &&
+			form1.isEmail('#email-input') &&
+			form1.isRequired('#password-input') && 
+			form1.minLength('#password-input', 6)
+			console.log(isSubmitable)
+	}
+
+	submitBtn.onclick = (e) => {
+		console.log(isSubmitable)
+		if (!isSubmitable) {
+
+		}
+	}
+</script>

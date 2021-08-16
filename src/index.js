@@ -3,7 +3,6 @@ const exphbs  = require('express-handlebars');
 const morgan = require('morgan')
 const path = require('path')
 const cookieParser = require('cookie-parser')
-const randomString = require('randomstring')
 const route = require('./routes');
 const db = require('./config/db');
 const app = express()
@@ -13,7 +12,7 @@ const port = 3000
 db.connect()
 
 // Use cookie parser
-app.use(cookieParser(randomString.generate()))
+app.use(cookieParser('ajdfak9333jd411afaef%9334'))
 
 // Using static file
 app.use(express.static(path.join(__dirname, 'public')))
@@ -24,7 +23,9 @@ app.use(morgan('combined'))
 // Template engine
 app.engine('.hbs', exphbs({
 	extname: '.hbs',
-	isCached: false
+	isCached: false,
+	helpers: {
+	}
 }))
 
 

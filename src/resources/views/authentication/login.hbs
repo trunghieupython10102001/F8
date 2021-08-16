@@ -6,11 +6,11 @@
 				<p class="authen-form__description">F8 là cộng đồng học lập trình thực tế miễn phí. Đăng nhập để cùng nhau học tập, đóng góp và chia sẻ kiến thức ❤️</p>
 				<div class="authen-form__social-wrapper">
 					<a href="" class="authen-form__social">
-						<img src="../img/search.png" alt="google logo" class="social-logo">
+						<img src="/img/search.png" alt="google logo" class="social-logo">
 						<span class="social-text">Đăng nhập với Google</span>
 					</a>
 					<a href="" class="authen-form__social">
-						<img src="../img/facebook.png" alt="google logo" class="social-logo">
+						<img src="/img/facebook.png" alt="google logo" class="social-logo">
 						<span class="social-text">Đăng nhập với Facebook</span>
 					</a>
 				</div>
@@ -18,18 +18,30 @@
 				<div class="authen-form__separator">
 					<span class="separator__text">HOẶC</span>
 				</div>
-				<form action="" class="authen-form__form">
+				<form action="/authen/login" method="POST" class="authen-form__form" id="login-form">
+					{{#if message}}
 					<div class="form-wrapper form-email">
 						<label class="authen-form__form-label" for="email-input">Email</label>
-						<input id="email-input" type="email" class="authen-form__form-input" placeholder="VD: nguyenvana@f8.edu.vn">
+						<input id="email-input" type="email" name="email" class="authen-form__form-input" placeholder="VD: nguyenvana@f8.edu.vn">
+						{{#if message.wrongEmail}}
+						<span class="form-message">{{message.wrongEmail}}</span>
+						{{else}}
+						<span class="form-message"></span>
+						{{/if}}
 					</div>
 					<div class="form-wrapper form-password">
-						<label id="password-input" class="authen-form__form-label" for="password-input">Mật khẩu</label>
-						<input type="password" class="authen-form__form-input" placeholder="Nhập mật khẩu">
-						<span class="password-icon">
+						<label class="authen-form__form-label" for="password-input">Mật khẩu</label>
+						<input id="password-input" type="password" class="authen-form__form-input" name="password" placeholder="Nhập mật khẩu">
+						{{!-- <span class="password-icon">
 							<i class="fas fa-eye-slash"></i>
-							{{!-- <i class="fas fa-eye"></i> --}}
-						</span>
+							<i class="fas fa-eye"></i>
+						</span> --}}
+						{{#if message.wrongPassword}}
+						<span class="form-message">{{message.wrongPassword}}</span>
+						{{else}}
+						<span class="form-message"></span>
+						{{/if}}
+					{{/if}}
 					</div>
 					<button class="form-submit-btn">Đăng nhập</button>
 				</form>
@@ -44,3 +56,76 @@
 	<p class="direct-message">Bạn chưa có tài khoản?</p><br><br>
 	<a href="/authen/signup" class="direct-link">Đăng ký miễn phí ngay!</a>
 </div>
+<script src="/script/validator.js"></script>
+<script>
+	const form1 = new Validator('#login-form')
+	const emailInput = $('#email-input')
+	const emailMessage = emailInput.nextElementSibling
+	const passwordInput = $('#password-input')
+	const passwordMessage = passwordInput.nextElementSibling
+	const submitBtn = $('.form-submit-btn')
+	let isSubmitable = false
+
+	// Validate email
+	emailInput.onblur = function() {
+		if(form1.isRequired('#email-input')) {
+			if (form1.isEmail('#email-input')) {
+				emailInput.classList.remove('invalid')
+				isSubmitable = true
+			} else {
+				emailInput.classList.add('invalid')
+				emailMessage.innerText = 'Trường này phải là email'
+				isSubmitable = false
+			}
+		} else {
+			emailInput.classList.add('invalid')
+			emailMessage.innerText = 'Vui lòng nhập vào email'
+			isSubmitable = false
+		}
+	}
+
+	emailInput.oninput = function() {
+		emailInput.classList.remove('invalid')
+		emailMessage.innerText = ''
+	}
+
+	// check password 
+	passwordInput.onblur = function() {
+		if(form1.isRequired('#password-input')) {
+			if (form1.minLength('#password-input', 6)) {
+				passwordInput.classList.remove('invalid')
+				isSubmitable = true
+			} else {
+				passwordInput.classList.add('invalid')
+				passwordMessage.innerText = 'Mật khẩu cần tối thiểu 6 ký tự'
+				isSubmitable = false
+			}
+		} else {
+			passwordInput.classList.add('invalid')
+			passwordMessage.innerText = 'Vui lòng nhập vào password'
+			isSubmitable = false
+		}
+	}
+
+	passwordInput.oninput = function() {
+		passwordInput.classList.remove('invalid')
+		passwordMessage.innerText = ''
+	}
+
+
+	form1.formElement.oninput = function(e) {
+		isSubmitable = form1.isRequired('#name-input') && 
+			form1.isRequired('#email-input') &&
+			form1.isEmail('#email-input') &&
+			form1.isRequired('#password-input') && 
+			form1.minLength('#password-input', 6)
+			console.log(isSubmitable)
+	}
+
+	submitBtn.onclick = (e) => {
+		console.log(isSubmitable)
+		if (!isSubmitable) {
+
+		}
+	}
+</script>
