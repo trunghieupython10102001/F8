@@ -1,17 +1,13 @@
-const $ = document.querySelector.bind(document)
-const $$ = document.querySelectorAll.bind(document)
-const coursesImg = $$('.course-item__img')
-const coursePathItems = $$('.course__path-item')
+const coursesImg = document.querySelectorAll('.course-item__img')
+const coursePathItems = document.querySelectorAll('.course__path-item')
+const courseInfoVideo = document.querySelector('.course-info__video')
 
-// set course image
-coursesImg.forEach(courseImg => {
-	courseImg.style.backgroundImage = `url(${courseImg.getAttribute('data-link')})`
-});
-coursePathItems[0].onclick = function() {
-	coursePathItems[0].classList.add('btn--secondary')
-	coursePathItems[1].classList.remove('btn--secondary')
+if (courseInfoVideo) {
+	courseInfoVideo.style.backgroundImage = `url(${courseInfoVideo.getAttribute('data-link')})`
 }
-coursePathItems[1].onclick = function() {
-	coursePathItems[1].classList.add('btn--secondary')
-	coursePathItems[0].classList.remove('btn--secondary')
+// set course image
+if (coursesImg) {
+	coursesImg.forEach(courseImg => {
+		courseImg.style.backgroundImage = `url(${courseImg.getAttribute('data-link')})`
+	});
 }

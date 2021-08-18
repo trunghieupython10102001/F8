@@ -7,6 +7,10 @@ const User = new Schema({
 	avatar: { type: String },
 	password: { type: String },
 	notification: { type: Boolean},
+	ref: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "Role",
+	}]
 }, {
 	timestamps: true,
 });

@@ -1,8 +1,9 @@
-const userControlsCourses = $('.user-controls-courses')
-const userControlsNotify = $('.user-controls-notify')
-const userControlSettings = $('.user-controls-settings')
-const userControls = $$('.user-controls-item')
-const controlsBoxSetting = $('#controls-box-setting')
+const userControlsCourses = document.querySelector('.user-controls-courses')
+
+const userControlsNotify = document.querySelector('.user-controls-notify')
+const userControlSettings = document.querySelector('.user-controls-settings')
+const userControls = document.querySelectorAll('.user-controls-item')
+const controlsBoxSetting = document.querySelector('#controls-box-setting')
 
 if (userControlSettings) {
 	userControlSettings.onclick = function() {

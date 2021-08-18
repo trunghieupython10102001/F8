@@ -1,5 +1,7 @@
-const User = require('./models/users')
+const User = require('../../app/models/users')
 const md5 = require('md5')
+const jwt = require('jsonwebtoken')
+const config = require('../../config/auth')
 const { mongooseArrayToObj, mongooseToObject } = require('../../util/mongoose')
 
 class AuthenController {
@@ -19,21 +21,20 @@ class AuthenController {
 	// [POST] /authen/login
 	logined(req, res, next) {
 		const hashingPassword = md5(req.body.password)
-		
-		User.findOne({ email: req.body.email})
+		User.findOne({ email: req.body.email })
 			.then(user => {
-				try {
-					let password = mongooseToObject(user).password 	
-				} catch (error) {
+				if (!user) {
 					res.redirect('/authen/login?email=false')
-				}
-				if (mongooseToObject(user).password === hashingPassword) {
-					res.cookie('id', user.id, { signed: true })
 				} else {
-					res.redirect('/authen/login?password=false')
+					if (mongooseToObject(user).password === hashingPassword) {
+						let token = jwt.sign({ id: user._id }, config.secret, { expiresIn: 86400 })
+						res.cookie('token', token)
+						res.redirect('/')
+					} else {
+						res.redirect('/authen/login?password=false')
+					}
 				}
 			})
-			.then(() => res.redirect('/'))
 			.catch(next)
 	}
 
@@ -41,7 +42,6 @@ class AuthenController {
 	signup(req, res, next) {
 		let valid = req.query.valid
 		let message = valid ? 'Email đã tồn tại' : ''
-		console.log(valid)
 		User.find({})
 			.then(users => {
 				res.render('authentication/signup', { 
@@ -49,6 +49,7 @@ class AuthenController {
 					message: message,
 				})
 			})
+			.catch(next)
 	}
 
 	// [POST] /authen/signup
@@ -57,34 +58,23 @@ class AuthenController {
 		req.body.password = md5(req.body.password)
 		User.findOne({ email: req.body.email})
 			.then(user => {
-				try {
-					let email = mongooseToObject(user).email 	
-					console.log(typeof email)
-					if (!user) {
-						return
-					}
-					if (email) {
-						res.redirect('/authen/signup?valid=false')
-						return
-					}
-				} catch (error) {
-					return
+				if (user) {
+					res.redirect('/authen/signup?valid=false')
 				}
-			})
-			.catch(next)
-		const user = new User(req.body)
-		user.save()
-			.then(() => res.cookie('id', user.id, {signed: true}))
-			.then(() => res.redirect('/'))
-			.then(() => {
-				User.findOne()
+				else {
+					const user = new User(req.body)
+					user.save()
+					let token = jwt.sign({ id: user._id }, config.secret, { expiresIn: 86400 })
+					res.cookie('token', token)
+					res.redirect('/')
+				}
 			})
 			.catch(next)
 	}
 
 	// [GET] /authen/logout
 	logout(req, res, next) {
-		res.clearCookie('id')		
+		res.clearCookie('token')		
 		res.redirect('/authen/login')
 	}
 }

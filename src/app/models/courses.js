@@ -9,7 +9,8 @@ const Course = new Schema({
 	level: { type: String },
 	image: { type: String },
 	lesson: { type: Number },
-	slug: { type: String, slug: "name", unique: true }
+	slug: { type: String, slug: "name", unique: true },
+	knowledge: { type: Array },
 }, {
 	timestamps: true,
 });

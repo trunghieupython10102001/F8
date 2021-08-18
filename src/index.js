@@ -16,6 +16,7 @@ app.use(cookieParser('ajdfak9333jd411afaef%9334'))
 
 // Using static file
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static('public'))
 
 // Morgan logger
 app.use(morgan('combined'))
@@ -29,6 +30,8 @@ app.engine('.hbs', exphbs({
 }))
 
 
+
+
 app.set('view engine', '.hbs')
 app.set('views', path.join(__dirname, 'resources', 'views'))
 
@@ -38,6 +41,12 @@ app.listen(port, () => {
 
 // json encode
 app.use(express.json())
-app.use(express.urlencoded())
-
+app.use(express.urlencoded({ extended: true }))
+app.use(function(req, res, next) {
+    res.header(
+		"Access-Control-Allow-Headers",
+		"x-access-token, Origin, Content-Type, Accept"
+    );
+    next();
+});
 route(app)

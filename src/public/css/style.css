@@ -410,7 +410,7 @@
 } */
 
 .course-item__img {
-	background-image: url(https://img.youtube.com/vi/R6plN3FvzFY/sddefault.jpg);
+	/* background-image: url(https://img.youtube.com/vi/R6plN3FvzFY/sddefault.jpg); */
 	max-width: 100%;
     transition: all .3s ease;
     padding-top: 56.25%;

@@ -1,17 +1,24 @@
-const Course = require('./models/courses')
-const User = require('./models/users')
+const Course = require('../../app/models/courses')
 const { mongooseArrayToObj, mongooseToObject } = require('../../util/mongoose')
 
 class CourseController {
 
 	// [GET] /courses
 	newestCourses(req, res, next) {
-		let signedCookies = req.signedCookies.id || null
-		Promise.all([Course.find({}).sort({ description: 'desc' }), User.findOne({ _id: signedCookies })])
-			.then(([courses, user]) => {
+		Course.find({}).sort({ description: 'asc'})
+			.then(courses => {
 				res.render('courses/newest-courses', {
 					courses: mongooseArrayToObj(courses),
-					user: mongooseToObject(user)
+				})
+			})
+	}
+
+	// [GET] /courses/:slug
+	details(req, res, next) {
+		Course.findOne({ slug: req.params.slug })
+			.then(course => {
+				res.render('courses/details-course', {
+					course: mongooseToObject(course),
 				})
 			})
 			.catch(next)
@@ -19,12 +26,10 @@ class CourseController {
 
 	// [GET] /courses/newest
 	allCourses(req, res, next) {
-		let signedCookies = req.signedCookies.id || null
-		Promise.all([Course.find({}), User.findOne({ _id: signedCookies })])
-			.then(([courses, user]) => {
+		Course.find({})
+			.then(courses => {
 				res.render('courses/all-courses', {
 					courses: mongooseArrayToObj(courses),
-					user: mongooseToObject(user)
 				})
 			})
 			.catch(next)

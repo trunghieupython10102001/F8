@@ -136,7 +136,6 @@
 		passwordMessage.innerText = ''
 	}
 
-	console.log(isSubmitable)
 
 	form1.formElement.oninput = function(e) {
 		isSubmitable = form1.isRequired('#name-input') && 
@@ -144,11 +143,9 @@
 			form1.isEmail('#email-input') &&
 			form1.isRequired('#password-input') && 
 			form1.minLength('#password-input', 6)
-			console.log(isSubmitable)
 	}
 
 	submitBtn.onclick = (e) => {
-		console.log(isSubmitable)
 		if (!isSubmitable) {
 
 		}

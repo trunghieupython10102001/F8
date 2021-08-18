@@ -1,12 +1,9 @@
-const $ = document.querySelector.bind(document)
-const $$ = document.querySelectorAll.bind(document)
-
-const header = $('.header')
-const sliderPlayBtn  = $('.slider__play-btn')
-const sliderVideo = $('.slider__video')
-const sliderOverlay = $('.slider__overlay')
-const sliderContent = $('.slider__content')
-const coursesImg = $$('.course-item__img')
+const header = document.querySelector('.header')
+const sliderPlayBtn  = document.querySelector('.slider__play-btn')
+const sliderVideo = document.querySelector('.slider__video')
+const sliderOverlay = document.querySelector('.slider__overlay')
+const sliderContent = document.querySelector('.slider__content')
+const coursesImg = document.querySelectorAll('.course-item__img')
 
 // set course image
 coursesImg.forEach(courseImg => {
