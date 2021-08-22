@@ -11,6 +11,11 @@ const Course = new Schema({
 	lesson: { type: Number },
 	slug: { type: String, slug: "name", unique: true },
 	knowledge: { type: Array },
+	video: { type: Array },
+	student: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "User"
+	}]
 }, {
 	timestamps: true,
 });

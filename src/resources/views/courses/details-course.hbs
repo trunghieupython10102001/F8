@@ -124,3 +124,14 @@
 		</div>
 	</div>
 </section>
+{{!-- hidden form --}}
+<form action="/subcribe/{{course._id}}?_method=PATCH" method="POST" id="subcribe-form"></form>
+<script>
+	const subcribeForm = document.getElementById("subcribe-form")
+	const subcribeBtn = document.querySelector(".btn--subcribe")
+
+	subcribeBtn.onclick = function(e) {
+		e.preventDefault();
+		subcribeForm.submit()
+	}
+</script>

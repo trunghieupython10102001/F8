@@ -1,6 +1,4 @@
-const express = require('express')
 const Course = require('../../app/models/courses')
-const User = require('../../app/models/users')
 const { mongooseArrayToObj, mongooseToObject } = require('../../util/mongoose')
 
 class SiteController {

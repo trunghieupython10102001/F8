@@ -8,7 +8,7 @@ function checkLogin(req, res, next) {
 	if (token) {
 		jwt.verify(token, config.secret, function (err, data) {
 			if (err) {
-				next(err)
+				next()
 			} else {
 				User.findOne({ _id: data.id })
 					.then(user => {
@@ -16,9 +16,11 @@ function checkLogin(req, res, next) {
 							res.locals.user = {
 								username: mongooseToObject(user).name
 							}
+							req.authenticated = true
 							next()
 						}
 						else {
+							req.authenticated = false
 							next()
 						}
 					})
